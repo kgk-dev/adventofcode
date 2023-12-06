@@ -30,12 +30,9 @@ func clac(regex *regexp.Regexp) types.Calc[int] {
 			splitedPair := strings.Split(pair[0], " ")
 			num, _ := strconv.ParseInt(splitedPair[0], 10, 64)
 			color := splitedPair[1]
-			switch {
-			case color == "r" && num > R:
-				return 0
-			case color == "g" && num > G:
-				return 0
-			case color == "b" && num > B:
+			if color == "r" && num > R ||
+				color == "g" && num > G ||
+				color == "b" && num > B {
 				return 0
 			}
 		}
