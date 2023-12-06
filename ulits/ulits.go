@@ -1,10 +1,22 @@
 package ulits
 
 import (
+	"aoc/types"
 	"bufio"
 	"io"
 	"log"
 )
+
+func TransferStream[T any](inputStream <-chan string, fn types.Calc[T]) <-chan T {
+	outputStream := make(chan T)
+	go func() {
+		defer close(outputStream)
+		for line := range inputStream {
+			outputStream <- fn(line)
+		}
+	}()
+	return outputStream
+}
 
 func ReadLineStream(reader io.Reader) <-chan string {
 	readerStream := make(chan string)
