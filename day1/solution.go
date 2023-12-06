@@ -9,11 +9,11 @@ import (
 	"strconv"
 )
 
-func calc[T int64](regex *regexp.Regexp) types.Calc[T] {
-	return func(line string) T {
+func calc(regex *regexp.Regexp) types.Calc[int64] {
+	return func(line string) int64 {
 		nums := regex.FindAllString(line, -1)
 		digit, _ := strconv.ParseInt(nums[0]+nums[len(nums)-1], 10, 64)
-		return T(digit)
+		return digit
 	}
 }
 
