@@ -5,7 +5,12 @@ import (
 	"bufio"
 	"io"
 	"log"
+	"os"
 )
+
+func Add(a, b int64) int64 {
+	return a + b
+}
 
 func TransferStream[T any](inputStream <-chan string, fn types.Calc[T]) <-chan T {
 	outputStream := make(chan T)
@@ -16,6 +21,21 @@ func TransferStream[T any](inputStream <-chan string, fn types.Calc[T]) <-chan T
 		}
 	}()
 	return outputStream
+}
+
+func FileToResult[T any](filename string,
+	calcFn types.Calc[T],
+	resultFn types.Result[T]) T {
+	file, err := os.Open(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+	var result T
+	for r := range TransferStream[T](ReadLineStream(file), calcFn) {
+		result = resultFn(result, r)
+	}
+	return result
 }
 
 func ReadLineStream(reader io.Reader) <-chan string {

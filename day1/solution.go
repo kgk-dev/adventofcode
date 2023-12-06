@@ -3,8 +3,6 @@ package day1
 import (
 	"aoc/types"
 	"aoc/ulits"
-	"log"
-	"os"
 	"regexp"
 	"strconv"
 )
@@ -18,18 +16,9 @@ func calc(regex *regexp.Regexp) types.Calc[int64] {
 }
 
 func Solution() int64 {
-	var result int64
 	var regex = regexp.MustCompile(`[0-9]`)
-
-	file, err := os.OpenFile("./day1/input", os.O_RDONLY, 0664)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
-	for r := range ulits.TransferStream(ulits.ReadLineStream(file), calc(regex)) {
-		result += r 
-	}
-
-	return result
+	return ulits.FileToResult[int64]("./day2/input",
+		calc(regex),
+		ulits.Add,
+	)
 }
