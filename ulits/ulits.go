@@ -6,7 +6,16 @@ import (
 	"io"
 	"log"
 	"os"
+	"strconv"
 )
+
+func ToInteger(s string) int64 {
+	num, err := strconv.ParseInt(s, 10, 64)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return num
+}
 
 func Add(a, b int64) int64 {
 	return a + b
