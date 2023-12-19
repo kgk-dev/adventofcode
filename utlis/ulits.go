@@ -20,7 +20,7 @@ func ToIntegers(nums []string) []int64 {
 func ToInteger(s string) int64 {
 	num, err := strconv.ParseInt(s, 10, 64)
 	if err != nil {
-		log.Fatal(err)
+		return 0
 	}
 	return num
 }
