@@ -2,7 +2,7 @@ package day2
 
 import (
 	"aoc/types"
-	"aoc/ulits"
+	"aoc/utlis"
 	"regexp"
 	"strconv"
 	"strings"
@@ -34,8 +34,8 @@ func clac[T int64](regex *regexp.Regexp) types.Calc[T] {
 
 func Solution() int64 {
 	regex := regexp.MustCompile(`\d+\s+[r|g|b]`)
-	return ulits.FileToResult[int64]("./day2/input",
+	return utlis.FileToResult[int64]("./day2/input",
 		clac(regex),
-		ulits.Add,
+		utlis.Add,
 	)
 }

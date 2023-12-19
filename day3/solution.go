@@ -2,7 +2,7 @@ package day3
 
 import (
 	"aoc/types"
-	"aoc/ulits"
+	"aoc/utlis"
 	"regexp"
 )
 
@@ -38,7 +38,7 @@ func valid(prev, cur, next []byte) int64 {
 		nextSymbolIndex := symRegexp.FindAllSubmatchIndex(next, -1)
 		curNumberIndex := numRegexp.FindAllSubmatchIndex(cur, -1)
 		for i, numberIndex := range curNumberIndex {
-			number := ulits.ToInteger(numbers[i])
+			number := utlis.ToInteger(numbers[i])
 			if check(numberIndex, prevSymbolIndex) {
 				result += number
 			} else if check(numberIndex, curSymbolIndex) {
@@ -77,7 +77,7 @@ func AddTotal(r1, r2 Result) Result {
 
 func Solution() int64 {
 	var prev, cur, next []byte
-	result := ulits.FileToResult[Result]("./day3/input",
+	result := utlis.FileToResult[Result]("./day3/input",
 		calc(prev, cur, next),
 		AddTotal,
 	)

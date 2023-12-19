@@ -1,4 +1,4 @@
-package ulits
+package utlis
 
 import (
 	"aoc/types"
@@ -8,6 +8,14 @@ import (
 	"os"
 	"strconv"
 )
+
+func ToIntegers(nums []string) []int64 {
+	result := make([]int64, len(nums))
+	for i, num := range nums {
+		result[i] = ToInteger(num)
+	}
+	return result
+}
 
 func ToInteger(s string) int64 {
 	num, err := strconv.ParseInt(s, 10, 64)

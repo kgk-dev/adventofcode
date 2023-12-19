@@ -2,7 +2,7 @@ package day1
 
 import (
 	"aoc/types"
-	"aoc/ulits"
+	"aoc/utlis"
 	"regexp"
 	"strconv"
 )
@@ -17,8 +17,8 @@ func calc(regex *regexp.Regexp) types.Calc[int64] {
 
 func Solution() int64 {
 	var regex = regexp.MustCompile(`[0-9]`)
-	return ulits.FileToResult[int64]("./day2/input",
+	return utlis.FileToResult[int64]("./day2/input",
 		calc(regex),
-		ulits.Add,
+		utlis.Add,
 	)
 }
