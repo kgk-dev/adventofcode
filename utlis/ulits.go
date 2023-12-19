@@ -9,6 +9,10 @@ import (
 	"strconv"
 )
 
+func IsDigit(b rune) bool {
+	return '0' <= b && b <= '9'
+}
+
 func ToIntegers(nums []string) []int64 {
 	result := make([]int64, len(nums))
 	for i, num := range nums {
